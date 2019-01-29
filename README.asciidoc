@@ -1,0 +1,66 @@
+// Copyright 2019 Matthew Todd
+// 
+// This file is part of Shorten Path
+// 
+// Shorten Path is free software: you can redistribute it and/or modify it
+// under the terms of the GNU General Public License as published by the Free
+// Software Foundation, either version 3 of the License, or (at your option)
+// any later version.
+// 
+// Shorten Path is distributed in the hope that it will be useful, but WITHOUT
+// ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+// FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+// more details.
+// 
+// You should have received a copy of the GNU General Public License along with
+// Shorten Path.  If not, see <http://www.gnu.org/licenses/>.
+README: Shorten Path
+====================
+:author: Matthew Todd
+:date: 2019-01-29
+:toc:
+:toclevel: 4
+:numbered:
+
+
+== Introduction
+
+`Shorten Path` is a small utility I wrote for use in my tmux configuration to display a path to file in a succinct way.
+It takes inspiration from how vim shows filenames in tabs.
+Here is an example:
+
+.Example
+----------------------
+$ shorten_path ./a/path/to/some/file.txt
+./a/p/t/s/file.txt
+----------------------
+
+So it strips out characters for intermediate directories in the path leaving only the first character.
+The idea being that when working with a set of files one typically can identify the file knowing just this information.
+
+== Pre-requisites for Building
+
+* ghc :: Haskell compiler
+* libghc-shake-dev :: Shake build system
+* Various haskell libraries:
+** libghc-hunit-dev :: testing
+** libghc-quickcheck2-dev :: testing
+** libghc-test-framework-dev :: testing
+** libghc-test-framework-hunit-dev :: testing
+** libghc-test-framework-quickcheck2-dev :: testing
+* asciidoctor :: For generating documentation
+
+== Version History
+
+* v0.1 :: TODO
+
+== License
+
+Code (and all other files in this project) is licensed under GNU GPL v3.
+
+== Website
+
+Official Website :: TODO
+
+Github :: TODO
+
