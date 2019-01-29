@@ -87,9 +87,9 @@ test_shortenPath_pathToDirectory :: Assertion
 test_shortenPath_pathToDirectory = shortenPath "./path/to/some/directory" @?= "./p/t/s/directory"
 
 -- | Test a path to a directory ending in a slash
--- TODO: what is the behavior we want for this?
+-- TODO: What behavior do we want here? Keep the full or shorten "directory?" With or without slash?
 test_shortenPath_pathToDirectoryWithSlash :: Assertion
-test_shortenPath_pathToDirectoryWithSlash = shortenPath "./path/to/some/directory" @?= "./p/t/s/directory/"
+test_shortenPath_pathToDirectoryWithSlash = shortenPath "./path/to/some/directory/" @?= "./p/t/s/d/"
 
 -- | Test a relative path with no starting '.'
 test_shortenPath_relativePathNoDot :: Assertion
