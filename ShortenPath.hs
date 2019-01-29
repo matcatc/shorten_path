@@ -22,17 +22,81 @@
 -- Shorten Path.  If not, see <http://www.gnu.org/licenses/>.
 
 {-# LANGUAGE CPP #-}
+{-# LANGUAGE OverloadedStrings #-}
 
 module Main where
 
+-- Use Lazy Data.Text so we can interactive "REPL-like" behavior
+import qualified Data.Text.Lazy as T
+import qualified Data.Text.Lazy.IO as T
+import System.Environment (getArgs)
+
+
+-- | Shorten a single element in the path. Basically head with customized
+-- behavior.
+shortenElement :: T.Text -> T.Text
+-- Error cases
+shortenElement "" = ""
+-- Special directories
+shortenElement "." = "."
+shortenElement ".." = ".."
+-- Generic cases
+shortenElement x = T.singleton $ T.head x
+
+
+-- | Split a path up into its individual parts
+splitPath :: T.Text -> [T.Text]
+splitPath = T.splitOn "/"
+
+-- |
+-- Take a filepath (string) and shorten it. Like how vim does it when
+-- displaying filepaths in tabs.
+-- 
+-- Example: "./a/path/to/some/file.txt" -> "./a/p/t/s/file.txt"
+shortenPath :: T.Text -> T.Text
+shortenPath path = T.intercalate "/" $ shortenedDirs ++ unshortenedItem
+    where
+        -- parts / directories of the path
+        -- Example: [".", "a", "path", "to", "some", "file.txt"]
+        parts :: [T.Text]
+        parts = splitPath path
+
+        -- shortened directories in path
+        -- Example: [".", "a", "p", "t", "s"]
+        shortenedDirs :: [T.Text]
+        shortenedDirs = map shortenElement $ init parts
+
+        -- Last item (usually file, but doesn't matter) which shouldn't be
+        -- shortened.
+        -- Example: ["file.txt"]
+        unshortenedItem :: [T.Text]
+        unshortenedItem = [last parts]
+
+
+-- | Main function for the real behavior
+shortenPathMain :: IO ()
+shortenPathMain = do
+        argv <- getArgs
+        let numArgs = length argv in
+            if numArgs == 0 then
+                -- use lines and unlines to print each line back to the user
+                -- after it is entered for REPL-like behavior. Requires that we
+                -- use Data.Text.Lazy
+                T.interact $ T.unlines . map shortenPath . T.lines
+            else if numArgs == 1 then
+                T.putStrLn $ shortenPath $ T.pack $ head argv
+            else
+                T.putStrLn "too many arguments provided"
+
+
+
+
+---------- Test cases
 
 -- | Main function for running unit tests
 testMain :: IO ()
 testMain = undefined
 
--- | Main function for the real behavior
-shortenPathMain :: IO ()
-shortenPathMain = undefined
 
 
 -- | Main function.

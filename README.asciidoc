@@ -43,6 +43,7 @@ The idea being that when working with a set of files one typically can identify 
 * ghc :: Haskell compiler
 * libghc-shake-dev :: Shake build system
 * Various haskell libraries:
+** libghc-text-short-dev
 ** libghc-hunit-dev :: testing
 ** libghc-quickcheck2-dev :: testing
 ** libghc-test-framework-dev :: testing
