@@ -21,10 +21,9 @@
 -- You should have received a copy of the GNU General Public License along with
 -- Shorten Path.  If not, see <http://www.gnu.org/licenses/>.
 
-{-# LANGUAGE CPP #-}
 {-# LANGUAGE OverloadedStrings #-}
 
-module Main where
+module ShortenPath where
 
 -- Use Lazy Data.Text so we can interactive "REPL-like" behavior
 import qualified Data.Text.Lazy as T
@@ -87,23 +86,4 @@ shortenPathMain = do
                 T.putStrLn $ shortenPath $ T.pack $ head argv
             else
                 T.putStrLn "too many arguments provided"
-
-
-
-
----------- Test cases
-
--- | Main function for running unit tests
-testMain :: IO ()
-testMain = undefined
-
-
-
--- | Main function.
-main :: IO ()
-#ifdef TESTING
-main = testMain
-#else
-main = shortenPathMain
-#endif
 
