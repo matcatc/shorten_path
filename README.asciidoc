@@ -43,17 +43,22 @@ The idea being that when working with a set of files one typically can identify 
 * ghc :: Haskell compiler
 * libghc-shake-dev :: Shake build system
 * Various haskell libraries:
-** libghc-text-short-dev
+** libghc-text-short-dev :: Data.Text
 ** libghc-hunit-dev :: testing
-** libghc-quickcheck2-dev :: testing
+//** libghc-quickcheck2-dev :: testing
 ** libghc-test-framework-dev :: testing
 ** libghc-test-framework-hunit-dev :: testing
-** libghc-test-framework-quickcheck2-dev :: testing
+//** libghc-test-framework-quickcheck2-dev :: testing
 * asciidoctor :: For generating documentation
 
 == Version History
 
-* v0.1 :: TODO
+* v0.1 :: Initial implementation
++
+--
+Basic behavior is present along with good test coverage.
+Still a few questions as to what requirements should be for some edge cases.
+--
 
 == License
 
