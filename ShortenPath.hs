@@ -40,7 +40,7 @@ shortenElement "" = ""
 shortenElement "." = "."
 shortenElement ".." = ".."
 -- Generic cases
-shortenElement x = T.singleton $ T.head x
+shortenElement x = T.singleton $ T.head $ T.strip x
 
 
 -- | Split a path up into its individual parts
@@ -58,7 +58,7 @@ shortenPath path = T.intercalate "/" $ shortenedDirs ++ unshortenedItem
         -- parts / directories of the path
         -- Example: [".", "a", "path", "to", "some", "file.txt"]
         parts :: [T.Text]
-        parts = splitPath path
+        parts = splitPath $ T.strip path
 
         -- shortened directories in path
         -- Example: [".", "a", "p", "t", "s"]

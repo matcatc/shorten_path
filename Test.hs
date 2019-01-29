@@ -98,7 +98,7 @@ test_shortenPath_relativePathNoDot = shortenPath "relative/path/to/file.txt" @?=
 -- | Test a path that includes whitespace in it
 -- TODO: should we strip whitespace from the beginning of a directory?
 test_shortenPath_pathWithWhitespace :: Assertion
-test_shortenPath_pathWithWhitespace = shortenPath " ./a/ path with/white space/to/file.txt " @?= "./a/ /w/t/file.txt"
+test_shortenPath_pathWithWhitespace = shortenPath " ./a/ path with/white space/to/file.txt " @?= "./a/p/w/t/file.txt"
 
 -- | Test a path with no directories in it
 test_shortenPath_pathNoDirs :: Assertion
